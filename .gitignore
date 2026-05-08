@@ -1,1 +1,6 @@
 .atl
+dataset/
+__pycache__/
+*.pyc
+*.npy
+*.npz
