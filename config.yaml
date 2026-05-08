@@ -4,7 +4,7 @@ data:
   dataset: "politifact" # choices: ['politifact', 'gossipcop']
   feature: "spacy"      # choices: ['profile', 'spacy', 'bert', 'content']
   batch_size: 128
-  data_dir: "data/UPFD"
+  data_dir: "dataset"
 
 model:
   gnn_type: "GCN"      # choices: ['GCN', 'GAT', 'SAGE']
