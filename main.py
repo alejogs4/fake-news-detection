@@ -4,10 +4,7 @@ from src.data import get_loaders
 from src.models.upfd_model import UPFDModel
 from src.trainer import Trainer
 
-def main():
-    # Load configuration
-    config = load_config('config.yaml')
-    
+def run_experiment(config):
     # Get device
     device = get_device(config['training']['device'])
     print(f"Using device: {device}")
@@ -41,6 +38,13 @@ def main():
     
     # Start training
     trainer.fit(config['training']['epochs'])
+    test_acc = trainer.test(trainer.test_loader)
+    return test_acc
+
+def main():
+    # Load configuration
+    config = load_config('config.yaml')
+    run_experiment(config)
 
 if __name__ == "__main__":
     main()
