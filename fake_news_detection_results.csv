@@ -1,104 +1,21 @@
 Seed,Dataset,Feature,Use GNN,GNN Type,Use Text,Use CMCG,Use Sentiment,Epochs,Accuracy
-42,gossipcop,bert,False,GCN,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,GCN,False,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,False,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,GCN,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,GCN,True,True,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,True,True,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,False,GCN,True,False,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,True,False,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,True,True,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,False,GCN,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,GCN,False,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,False,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,GCN,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,GCN,True,True,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,True,True,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,False,GCN,True,False,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,True,False,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,True,True,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,False,GCN,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,GCN,False,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,False,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,GCN,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,GCN,True,True,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,True,True,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,False,GCN,True,False,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,True,False,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,True,True,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,False,GCN,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,GCN,False,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,False,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,GCN,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,GCN,True,True,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,True,True,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,False,GCN,True,False,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,True,False,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,True,True,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,False,GCN,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,GCN,False,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,False,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,GCN,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,GCN,True,True,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,True,True,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,False,GCN,True,False,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,True,False,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,True,SAGE,True,True,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,False,GCN,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,GCN,False,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,False,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,GCN,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,True,False,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,GCN,True,True,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,True,True,False,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,False,GCN,True,False,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,True,False,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-2026,gossipcop,bert,True,SAGE,True,True,True,30,ERROR: Dataset files not found in /Users/alejandrogarciaserna/Documents/github/fake-news-detection/dataset/gossipcop/raw. Please ensure the dataset zip file is unzipped into the raw directory.
-42,gossipcop,bert,False,GCN,True,False,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,GCN,False,False,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,SAGE,False,False,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,GCN,True,False,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,SAGE,True,False,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,GCN,True,True,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,SAGE,True,True,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,False,GCN,True,False,True,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,SAGE,True,False,True,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,SAGE,True,True,True,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,False,GCN,True,False,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,GCN,False,False,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,SAGE,False,False,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,GCN,True,False,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,SAGE,True,False,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,GCN,True,True,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,SAGE,True,True,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,False,GCN,True,False,True,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,SAGE,True,False,True,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,SAGE,True,True,True,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,False,GCN,True,False,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,GCN,False,False,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,SAGE,False,False,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,GCN,True,False,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,SAGE,True,False,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,GCN,True,True,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,SAGE,True,True,False,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,False,GCN,True,False,True,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,SAGE,True,False,True,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,True,SAGE,True,True,True,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,False,GCN,True,False,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,GCN,False,False,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,SAGE,False,False,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,GCN,True,False,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,SAGE,True,False,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,GCN,True,True,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,SAGE,True,True,False,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,False,GCN,True,False,True,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,SAGE,True,False,True,30,ERROR: HTTP Error 404: Not Found
-2026,gossipcop,bert,True,SAGE,True,True,True,30,ERROR: HTTP Error 404: Not Found
-42,gossipcop,bert,False,GCN,True,False,False,30,0.7205959226346054
-42,gossipcop,bert,True,GCN,False,False,False,30,0.9631468897020387
 42,gossipcop,bert,False,GCN,True,False,False,30,0.7213800313643491
+42,gossipcop,bert,True,GCN,False,False,False,30,0.9628855201254574
+42,gossipcop,bert,True,SAGE,False,False,False,30,0.9641923680083638
+42,gossipcop,bert,True,GCN,True,False,False,30,0.9534762153685311
+42,gossipcop,bert,True,SAGE,True,False,False,30,0.9589649764767381
+42,gossipcop,bert,True,GCN,True,True,False,30,0.9398849973863043
+42,gossipcop,bert,True,SAGE,True,True,False,30,0.968897020386827
+42,gossipcop,bert,False,GCN,True,False,True,30,0.71745948771563
+42,gossipcop,bert,True,SAGE,True,False,True,30,0.9618400418191323
+42,gossipcop,bert,True,SAGE,True,True,True,30,0.9715107161526398
+2026,gossipcop,bert,False,GCN,True,False,False,30,0.7396759017250392
+2026,gossipcop,bert,True,GCN,False,False,False,30,0.9657605854678516
+2026,gossipcop,bert,True,SAGE,False,False,False,30,0.9560899111343439
+2026,gossipcop,bert,True,GCN,True,False,False,30,0.9597490852064819
+2026,gossipcop,bert,True,SAGE,True,False,False,30,0.9626241505488761
+2026,gossipcop,bert,True,GCN,True,True,False,30,0.9547830632514376
+2026,gossipcop,bert,True,SAGE,True,True,False,30,0.9589649764767381
+2026,gossipcop,bert,False,GCN,True,False,True,30,0.7054364871928908
+2026,gossipcop,bert,True,SAGE,True,False,True,30,0.9605331939362258
+2026,gossipcop,bert,True,SAGE,True,True,True,30,0.9657605854678516
