@@ -55,3 +55,54 @@ class Trainer:
             print(f'Epoch: {epoch:02d}, Loss: {loss:.4f}, Train: {train_acc:.4f}, '
                   f'Val: {val_acc:.4f}, Test: {test_acc:.4f}')
 
+class TransductiveTrainer:
+    def __init__(self, model, optimizer, device, giant_batch, H, train_idx, val_idx, test_idx, y):
+        self.model = model.to(device)
+        self.optimizer = optimizer
+        self.device = device
+        self.giant_batch = giant_batch.to(device)
+        self.H = H.to(device)
+        self.train_idx = train_idx.to(device)
+        self.val_idx = val_idx.to(device)
+        self.test_idx = test_idx.to(device)
+        self.y = y.to(device)
+
+    def train_epoch(self):
+        self.model.train()
+        self.optimizer.zero_grad()
+        # Forward pass on the entire hypergraph
+        out = self.model(
+            x=self.giant_batch.x,
+            edge_index=self.giant_batch.edge_index,
+            batch=self.giant_batch.batch,
+            H=self.H
+        )
+        # Compute loss on training nodes only
+        loss = F.nll_loss(out[self.train_idx], self.y[self.train_idx])
+        loss.backward()
+        self.optimizer.step()
+        return float(loss)
+
+    @torch.no_grad()
+    def test(self, indices):
+        self.model.eval()
+        out = self.model(
+            x=self.giant_batch.x,
+            edge_index=self.giant_batch.edge_index,
+            batch=self.giant_batch.batch,
+            H=self.H
+        )
+        pred = out[indices].argmax(dim=-1)
+        correct = int((pred == self.y[indices]).sum())
+        return correct / len(indices)
+
+    def fit(self, epochs):
+        for epoch in range(1, epochs + 1):
+            loss = self.train_epoch()
+            train_acc = self.test(self.train_idx)
+            val_acc = self.test(self.val_idx)
+            test_acc = self.test(self.test_idx)
+            print(f'Epoch: {epoch:02d}, Loss: {loss:.4f}, Train: {train_acc:.4f}, '
+                  f'Val: {val_acc:.4f}, Test: {test_acc:.4f}')
+
+

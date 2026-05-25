@@ -4,6 +4,7 @@ import time
 import torch
 import random
 import numpy as np
+import os
 
 # Ensure this script is run in an environment where main.py can be imported
 from main import run_experiment
@@ -18,7 +19,7 @@ except ImportError:
     print("Not running in Google Colab, or gspread/auth not installed. Sheet logging will be skipped/simulated.")
     COLAB_ENV = False
 
-def setup_google_sheet(sheet_name="UPFD_Experiments"):
+def setup_google_sheet(sheet_name="UPFD_Experiments_HGFND"):
     if not COLAB_ENV:
         return None
     auth.authenticate_user()
@@ -32,7 +33,7 @@ def setup_google_sheet(sheet_name="UPFD_Experiments"):
         sh = gc.create(sheet_name)
         worksheet = sh.sheet1
         # Set up headers
-        headers = ["Seed", "Dataset", "Feature", "Use GNN", "GNN Type", "Use Text", "Use CMCG (Co-Attention)", "Use Sentiment", "Epochs", "Accuracy"]
+        headers = ["Seed", "Dataset", "Feature", "Architecture Type", "GNN Type", "Use GNN", "Use Text", "Use HGFND (Hypergraph)", "Epochs", "Accuracy"]
         worksheet.append_row(headers)
     
     return worksheet
@@ -45,41 +46,50 @@ def set_seed(seed):
         torch.cuda.manual_seed_all(seed)
 
 def main():
-    worksheet = setup_google_sheet("Fake_News_Detection_Results")
+    worksheet = setup_google_sheet("Fake_News_Detection_HGFND_Results")
+    results_file = "fake_news_detection_results.csv"
     
-    # Define the test matrix
+    # Init CSV local file
+    if not os.path.exists(results_file):
+        df_init = pd.DataFrame(columns=[
+            "Seed", "Dataset", "Feature", "Architecture Type", "GNN Type", 
+            "Use GNN", "Use Text", "Use HGFND", "Epochs", "Accuracy"
+        ])
+        df_init.to_csv(results_file, index=False)
+        print(f"Created local results file {results_file} for logging.")
+    else:
+        print(f"Appending to existing local results file {results_file}.")
+        
     seeds = [42, 2026]
-    datasets = ["gossipcop"] # Can add "politifact"
-    features = ["bert"] # or "spacy"
+    datasets = ["gossipcop"]
+    features = ["bert"] # Can add "spacy"
     
-    # Combinations of model architectures
-    # Each tuple: (use_gnn, gnn_type, use_text, use_cmcg, use_sentiment)
-    model_configs = [
-        # Baseline Text only
-        (False, "GCN", True, False, False),
+    # 10 rigorous experiments ONLY with GNN, Text-based models, and HGFND (hiperaristas)
+    # Each configuration: (architecture_name, gnn_type, use_gnn, use_text, use_hgfnd)
+    experiments_matrix = [
+        # 1. Text-Only baseline
+        ("Text-Only", "SAGE", False, True, False),
         
-        # Baseline GNN only (GCN & SAGE)
-        (True, "GCN", False, False, False),
-        (True, "SAGE", False, False, False),
+        # 2-4. GNN-Only baselines (propagation trees only)
+        ("GNN-Only (GCN)", "GCN", True, False, False),
+        ("GNN-Only (SAGE)", "SAGE", True, False, False),
+        ("GNN-Only (GAT)", "GAT", True, False, False),
         
-        # GNN + Text (Early fusion / Concatenation)
-        (True, "GCN", True, False, False),
-        (True, "SAGE", True, False, False),
+        # 5-7. GNN + Text baselines (Early Fusion / Concatenation)
+        ("GNN+Text (GCN)", "GCN", True, True, False),
+        ("GNN+Text (SAGE)", "SAGE", True, True, False),
+        ("GNN+Text (GAT)", "GAT", True, True, False),
         
-        # CMCG (Co-Attention between GNN and Text)
-        (True, "SAGE", True, True, False),
-        
-        # Text + Sentiment
-        (False, "GCN", True, False, True),
-        
-        # Full Model: GNN + Text + CMCG + Sentiment
-        (True, "SAGE", True, True, True),
+        # 8-10. HGFND (Hypergraph Neural Network)
+        ("HGFND (GCN)", "GCN", True, True, True),
+        ("HGFND (SAGE)", "SAGE", True, True, True),
+        ("HGFND (GAT)", "GAT", True, True, True)
     ]
 
     for seed in seeds:
         for dataset in datasets:
             for feature in features:
-                for use_gnn, gnn_type, use_text, use_cmcg, use_sentiment in model_configs:
+                for arch_name, gnn_type, use_gnn, use_text, use_hgfnd in experiments_matrix:
                     set_seed(seed)
                     
                     config = {
@@ -94,45 +104,67 @@ def main():
                             "hidden_channels": 128,
                             "use_gnn": use_gnn,
                             "use_text": use_text,
-                            "use_cmcg": use_cmcg,
-                            "use_sentiment": use_sentiment,
-                            "sentiment_dim": 1 # Example dummy sentiment dimension
+                            "use_sentiment": False,
+                            "use_cmcg": False,
+                            # HGFND parameters
+                            "use_hgfnd": use_hgfnd,
+                            "hgfnd_layers": 2,
+                            "entity_clusters": 50,
+                            "time_decimals": 2
                         },
                         "training": {
                             "lr": 0.001,
                             "weight_decay": 0.01,
-                            "epochs": 30, # Reduced for testing, adjust as needed
+                            "epochs": 30, # Optimized epoch length for comparative evaluation
                             "device": "auto"
                         }
                     }
                     
-                    print(f"\n--- Running Experiment ---")
+                    print(f"\n--- Running Experiment: {arch_name} ---")
                     print(f"Seed: {seed}, Dataset: {dataset}, Feature: {feature}")
-                    print(f"GNN: {use_gnn} ({gnn_type}), Text: {use_text}, CMCG: {use_cmcg}, Sentiment: {use_sentiment}")
                     
                     try:
                         acc = run_experiment(config)
-                        print(f"Achieved Accuracy: {acc:.4f}")
+                        acc_val = float(acc)
+                        print(f"Achieved Accuracy: {acc_val:.4f}")
+                        
+                        # Log to CSV
+                        row_df = pd.DataFrame([{
+                            "Seed": seed, "Dataset": dataset, "Feature": feature, 
+                            "Architecture Type": arch_name, "GNN Type": gnn_type, 
+                            "Use GNN": use_gnn, "Use Text": use_text, "Use HGFND": use_hgfnd, 
+                            "Epochs": config['training']['epochs'], "Accuracy": acc_val
+                        }])
+                        row_df.to_csv(results_file, mode='a', header=False, index=False)
                         
                         # Log to Google Sheets
                         if worksheet is not None:
                             row = [
-                                seed, dataset, feature, 
-                                use_gnn, gnn_type, use_text, use_cmcg, use_sentiment, 
-                                config['training']['epochs'], float(acc)
+                                seed, dataset, feature, arch_name, gnn_type,
+                                use_gnn, use_text, use_hgfnd, 
+                                config['training']['epochs'], acc_val
                             ]
                             worksheet.append_row(row)
-                            # Sleep briefly to avoid Google Sheets API rate limits
                             time.sleep(1)
+                            
                     except Exception as e:
                         print(f"Experiment failed: {e}")
+                        row_df = pd.DataFrame([{
+                            "Seed": seed, "Dataset": dataset, "Feature": feature, 
+                            "Architecture Type": arch_name, "GNN Type": gnn_type, 
+                            "Use GNN": use_gnn, "Use Text": use_text, "Use HGFND": use_hgfnd, 
+                            "Epochs": config['training']['epochs'], "Accuracy": f"ERROR: {str(e)}"
+                        }])
+                        row_df.to_csv(results_file, mode='a', header=False, index=False)
+                        
                         if worksheet is not None:
                             row = [
-                                seed, dataset, feature, 
-                                use_gnn, gnn_type, use_text, use_cmcg, use_sentiment, 
+                                seed, dataset, feature, arch_name, gnn_type,
+                                use_gnn, use_text, use_hgfnd, 
                                 config['training']['epochs'], f"ERROR: {str(e)}"
                             ]
                             worksheet.append_row(row)
+                            time.sleep(1)
 
 if __name__ == "__main__":
     main()

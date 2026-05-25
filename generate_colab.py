@@ -37,6 +37,7 @@ files_to_write = [
     "src/models/classifier.py",
     "src/models/text_encoders.py",
     "src/models/gnn_encoders.py",
+    "src/models/hgfnd.py",
     "src/models/upfd_model.py",
     "main.py",
     "config.yaml",

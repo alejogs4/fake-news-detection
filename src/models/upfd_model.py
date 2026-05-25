@@ -18,6 +18,13 @@ class UPFDModel(nn.Module):
     def __init__(self, config, in_channels, out_channels):
         super().__init__()
         model_cfg = config['model']
+        self.use_hgfnd = model_cfg.get('use_hgfnd', False)
+        
+        if self.use_hgfnd:
+            from src.models.hgfnd import HGFND
+            self.hgfnd_model = HGFND(config, in_channels, out_channels)
+            return
+
         self.use_gnn = model_cfg.get('use_gnn', True)
         self.use_text = model_cfg.get('use_text', True)
         self.use_sentiment = model_cfg.get('use_sentiment', False)
@@ -54,7 +61,10 @@ class UPFDModel(nn.Module):
 
         self.classifier = MLPClassifier(combined_channels, out_channels)
 
-    def forward(self, x, edge_index, batch, sentiment_features=None):
+    def forward(self, x, edge_index, batch, sentiment_features=None, H=None):
+        if self.use_hgfnd:
+            return self.hgfnd_model(x, edge_index, batch, H)
+
         embeddings = []
         h_gnn = None
         h_text = None
@@ -87,3 +97,4 @@ class UPFDModel(nn.Module):
             h = embeddings[0]
 
         return self.classifier(h)
+

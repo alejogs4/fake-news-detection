@@ -1,21 +1,29 @@
 # UPFD Project Configuration
 
 data:
-  dataset: "politifact" # choices: ['politifact', 'gossipcop']
+  dataset: "gossipcop" # choices: ['politifact', 'gossipcop']
   feature: "spacy"      # choices: ['profile', 'spacy', 'bert', 'content']
   batch_size: 128
   data_dir: "dataset"
 
 model:
-  gnn_type: "GCN"      # choices: ['GCN', 'GAT', 'SAGE']
+  gnn_type: "SAGE"      # choices: ['GCN', 'GAT', 'SAGE']
   hidden_channels: 128
   use_gnn: true
   use_text: true
   # Future extensions
   use_sentiment: false
+  # HGFND settings
+  use_hgfnd: false      # Set to true to use the HGFND architecture from the paper
+  hgfnd_layers: 2
+  entity_clusters: 50
+  time_decimals: 2
+
 
 training:
   lr: 0.001
   weight_decay: 0.01
   epochs: 60
   device: "auto" # 'auto', 'cuda', or 'cpu'
+
+
