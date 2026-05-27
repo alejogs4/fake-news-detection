@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 *.npy
 *.npz
+IEEEBigdata22_HGFND/
+GNN-FakeNews/

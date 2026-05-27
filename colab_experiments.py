@@ -9,35 +9,6 @@ import os
 # Ensure this script is run in an environment where main.py can be imported
 from main import run_experiment
 
-# Colab-specific imports for Google Sheets
-try:
-    from google.colab import auth
-    from google.auth import default
-    import gspread
-    COLAB_ENV = True
-except ImportError:
-    print("Not running in Google Colab, or gspread/auth not installed. Sheet logging will be skipped/simulated.")
-    COLAB_ENV = False
-
-def setup_google_sheet(sheet_name="UPFD_Experiments_HGFND"):
-    if not COLAB_ENV:
-        return None
-    auth.authenticate_user()
-    creds, _ = default()
-    gc = gspread.authorize(creds)
-    
-    try:
-        sh = gc.open(sheet_name)
-        worksheet = sh.sheet1
-    except gspread.exceptions.SpreadsheetNotFound:
-        sh = gc.create(sheet_name)
-        worksheet = sh.sheet1
-        # Set up headers
-        headers = ["Seed", "Dataset", "Feature", "Architecture Type", "GNN Type", "Use GNN", "Use Text", "Use HGFND (Hypergraph)", "Epochs", "Accuracy"]
-        worksheet.append_row(headers)
-    
-    return worksheet
-
 def set_seed(seed):
     random.seed(seed)
     np.random.seed(seed)
@@ -46,22 +17,18 @@ def set_seed(seed):
         torch.cuda.manual_seed_all(seed)
 
 def main():
-    worksheet = setup_google_sheet("Fake_News_Detection_HGFND_Results")
     results_file = "fake_news_detection_results.csv"
     
-    # Init CSV local file
-    if not os.path.exists(results_file):
-        df_init = pd.DataFrame(columns=[
-            "Seed", "Dataset", "Feature", "Architecture Type", "GNN Type", 
-            "Use GNN", "Use Text", "Use HGFND", "Epochs", "Accuracy"
-        ])
-        df_init.to_csv(results_file, index=False)
-        print(f"Created local results file {results_file} for logging.")
-    else:
-        print(f"Appending to existing local results file {results_file}.")
+    # Overwrite the CSV at the start of the script run
+    df_init = pd.DataFrame(columns=[
+        "Seed", "Dataset", "Feature", "Architecture Type", "GNN Type", 
+        "Use GNN", "Use Text", "Use HGFND", "Epochs", "Accuracy"
+    ])
+    df_init.to_csv(results_file, index=False)
+    print(f"Created/Reset local results file {results_file} for logging.")
         
     seeds = [42, 2026]
-    datasets = ["gossipcop"]
+    datasets = ["politifact"]
     features = ["bert"] # Can add "spacy"
     
     # 10 rigorous experiments ONLY with GNN, Text-based models, and HGFND (hiperaristas)
@@ -115,8 +82,8 @@ def main():
                         "training": {
                             "lr": 0.001,
                             "weight_decay": 0.01,
-                            "epochs": 30, # Optimized epoch length for comparative evaluation
-                            "device": "auto"
+                            "epochs": 80, # Optimized epoch length for comparative evaluation
+                            "device": "cuda"
                         }
                     }
                     
@@ -136,16 +103,6 @@ def main():
                             "Epochs": config['training']['epochs'], "Accuracy": acc_val
                         }])
                         row_df.to_csv(results_file, mode='a', header=False, index=False)
-                        
-                        # Log to Google Sheets
-                        if worksheet is not None:
-                            row = [
-                                seed, dataset, feature, arch_name, gnn_type,
-                                use_gnn, use_text, use_hgfnd, 
-                                config['training']['epochs'], acc_val
-                            ]
-                            worksheet.append_row(row)
-                            time.sleep(1)
                             
                     except Exception as e:
                         print(f"Experiment failed: {e}")
@@ -156,15 +113,6 @@ def main():
                             "Epochs": config['training']['epochs'], "Accuracy": f"ERROR: {str(e)}"
                         }])
                         row_df.to_csv(results_file, mode='a', header=False, index=False)
-                        
-                        if worksheet is not None:
-                            row = [
-                                seed, dataset, feature, arch_name, gnn_type,
-                                use_gnn, use_text, use_hgfnd, 
-                                config['training']['epochs'], f"ERROR: {str(e)}"
-                            ]
-                            worksheet.append_row(row)
-                            time.sleep(1)
 
 if __name__ == "__main__":
     main()

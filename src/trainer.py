@@ -47,13 +47,21 @@ class Trainer:
         return total_correct / total_examples
 
     def fit(self, epochs):
+        best_val_acc = 0
+        best_test_acc = 0
         for epoch in range(1, epochs + 1):
             loss = self.train_epoch()
             train_acc = self.test(self.train_loader)
             val_acc = self.test(self.val_loader)
             test_acc = self.test(self.test_loader)
+            
+            if val_acc > best_val_acc:
+                best_val_acc = val_acc
+                best_test_acc = test_acc
+                
             print(f'Epoch: {epoch:02d}, Loss: {loss:.4f}, Train: {train_acc:.4f}, '
                   f'Val: {val_acc:.4f}, Test: {test_acc:.4f}')
+        return best_test_acc
 
 class TransductiveTrainer:
     def __init__(self, model, optimizer, device, giant_batch, H, train_idx, val_idx, test_idx, y):
@@ -97,12 +105,20 @@ class TransductiveTrainer:
         return correct / len(indices)
 
     def fit(self, epochs):
+        best_val_acc = 0
+        best_test_acc = 0
         for epoch in range(1, epochs + 1):
             loss = self.train_epoch()
             train_acc = self.test(self.train_idx)
             val_acc = self.test(self.val_idx)
             test_acc = self.test(self.test_idx)
+            
+            if val_acc > best_val_acc:
+                best_val_acc = val_acc
+                best_test_acc = test_acc
+                
             print(f'Epoch: {epoch:02d}, Loss: {loss:.4f}, Train: {train_acc:.4f}, '
                   f'Val: {val_acc:.4f}, Test: {test_acc:.4f}')
+        return best_test_acc
 
 

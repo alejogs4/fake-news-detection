@@ -152,9 +152,8 @@ def run_experiment(config):
         )
         
         # Start training
-        trainer.fit(config['training']['epochs'])
-        test_acc = trainer.test(trainer.test_idx)
-        return test_acc
+        best_test_acc = trainer.fit(config['training']['epochs'])
+        return best_test_acc
     else:
         # Initialize standard GNN/Text model
         model = UPFDModel(
@@ -181,9 +180,8 @@ def run_experiment(config):
         )
         
         # Start training
-        trainer.fit(config['training']['epochs'])
-        test_acc = trainer.test(trainer.test_loader)
-        return test_acc
+        best_test_acc = trainer.fit(config['training']['epochs'])
+        return best_test_acc
 
 def main():
     # Load configuration
