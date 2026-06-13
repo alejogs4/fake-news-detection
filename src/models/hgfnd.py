@@ -3,7 +3,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
-from torch_geometric.nn import SAGEConv, GCNConv, GATConv, global_max_pool
+from torch_geometric.nn import (
+    SAGEConv, GCNConv, GATConv,
+    global_max_pool, global_mean_pool, global_add_pool, AttentionalAggregation
+)
 
 class HyperGraphAttentionLayerSparse(nn.Module):
     def __init__(self, in_features, out_features, dropout, alpha, transfer, concat=True, bias=False):
@@ -149,6 +152,7 @@ class HGFND(nn.Module):
         self.dropout = model_cfg.get('dropout', 0.3)
         self.out_channels = out_channels
         self.in_channels = in_channels
+        self.pooling = model_cfg.get('pooling', 'max')
         
         if self.gnn_type == 'SAGE':
             self.conv1 = SAGEConv(self.in_channels, self.hidden_channels)
@@ -163,6 +167,12 @@ class HGFND(nn.Module):
         self.lin1 = nn.Linear(2 * self.hidden_channels, self.hidden_channels)
         self.cls = nn.Linear(self.hidden_channels, self.out_channels, bias=True)
         
+        if self.pooling == 'attention':
+            gate_nn = nn.Linear(self.hidden_channels, 1)
+            self.pool = AttentionalAggregation(gate_nn)
+        elif self.pooling not in ['max', 'mean', 'add']:
+            raise ValueError(f"Unsupported pooling type: {self.pooling}")
+        
         self.hypergraph_model = NewsHypergraph(self.hidden_channels, self.out_channels, self.dropout)
 
     def forward(self, x, edge_index, batch, H):
@@ -172,7 +182,14 @@ class HGFND(nn.Module):
         news = self.lin0(news).relu()
 
         p = self.conv1(x, edge_index).relu()
-        p = global_max_pool(p, batch)
+        if self.pooling == 'max':
+            p = global_max_pool(p, batch)
+        elif self.pooling == 'mean':
+            p = global_mean_pool(p, batch)
+        elif self.pooling == 'add':
+            p = global_add_pool(p, batch)
+        elif self.pooling == 'attention':
+            p = self.pool(p, batch)
         p = self.lin1(torch.cat([news, p], dim=-1)).relu()
 
         v = p.unsqueeze(0)

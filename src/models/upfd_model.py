@@ -39,7 +39,8 @@ class UPFDModel(nn.Module):
 
         if self.use_gnn:
             self.gnn_encoder = GNNEncoder(
-                model_cfg['gnn_type'], in_channels, hidden_channels
+                model_cfg['gnn_type'], in_channels, hidden_channels,
+                pooling=model_cfg.get('pooling', 'max')
             )
             combined_channels += hidden_channels
 

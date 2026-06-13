@@ -8,6 +8,7 @@ data:
 
 model:
   gnn_type: "SAGE"      # choices: ['GCN', 'GAT', 'SAGE']
+  pooling: "max"        # choices: ['max', 'mean', 'add', 'attention']
   hidden_channels: 128
   use_gnn: true
   use_text: true
