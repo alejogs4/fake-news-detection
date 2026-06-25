@@ -1,0 +1,6 @@
+Architecture Type,Pooling,Mean Accuracy,,Seeds
+HGFND (SAGE) - Add,add,0.8400,,7
+HGFND (SAGE) - Attention,attention,0.9073,,7
+HGFND (SAGE) - Max,max,0.9027,,7
+HGFND (SAGE) - Mean,mean,0.8850,,7
+HGFND (SAGE) - Root,root,0.9127,,7

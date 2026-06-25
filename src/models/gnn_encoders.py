@@ -21,7 +21,7 @@ class GNNEncoder(torch.nn.Module):
         if self.pooling == 'attention':
             gate_nn = torch.nn.Linear(hidden_channels, 1)
             self.pool = AttentionalAggregation(gate_nn)
-        elif self.pooling not in ['max', 'mean', 'add']:
+        elif self.pooling not in ['max', 'mean', 'add', 'root']:
             raise ValueError(f"Unsupported pooling type: {self.pooling}")
 
         if self.concat:
@@ -29,8 +29,13 @@ class GNNEncoder(torch.nn.Module):
             self.lin1 = torch.nn.Linear(hidden_channels * 2, hidden_channels)
 
     def forward(self, x, edge_index, batch):
+        root_indices = (batch[1:] - batch[:-1]).nonzero(as_tuple=False).view(-1)
+        root_indices = torch.cat([root_indices.new_zeros(1), root_indices + 1], dim=0)
+
         h = self.conv(x, edge_index).relu()
-        if self.pooling == 'max':
+        if self.pooling == 'root':
+            h = h[root_indices]
+        elif self.pooling == 'max':
             h = global_max_pool(h, batch)
         elif self.pooling == 'mean':
             h = global_mean_pool(h, batch)
@@ -40,12 +45,9 @@ class GNNEncoder(torch.nn.Module):
             h = self.pool(h, batch)
 
         if self.concat:
-            # Get the root node (news content) features of each graph
-            root_indices = (batch[1:] - batch[:-1]).nonzero(as_tuple=False).view(-1)
-            root_indices = torch.cat([root_indices.new_zeros(1), root_indices + 1], dim=0)
             news = x[root_indices]
             news = self.lin0(news).relu()
             h = torch.cat([h, news], dim=1)
             h = self.lin1(h).relu()
-            
+
         return h

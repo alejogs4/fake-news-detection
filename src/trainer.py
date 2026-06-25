@@ -46,19 +46,26 @@ class Trainer:
             total_examples += data.num_graphs
         return total_correct / total_examples
 
-    def fit(self, epochs):
+    def fit(self, epochs, patience=30):
         best_val_acc = 0
         best_test_acc = 0
+        wait = 0
         for epoch in range(1, epochs + 1):
             loss = self.train_epoch()
             train_acc = self.test(self.train_loader)
             val_acc = self.test(self.val_loader)
             test_acc = self.test(self.test_loader)
-            
+
             if val_acc > best_val_acc:
                 best_val_acc = val_acc
                 best_test_acc = test_acc
-                
+                wait = 0
+            else:
+                wait += 1
+                if wait >= patience:
+                    print(f'Early stopping at epoch {epoch}')
+                    break
+
             print(f'Epoch: {epoch:02d}, Loss: {loss:.4f}, Train: {train_acc:.4f}, '
                   f'Val: {val_acc:.4f}, Test: {test_acc:.4f}')
         return best_test_acc
@@ -104,21 +111,26 @@ class TransductiveTrainer:
         correct = int((pred == self.y[indices]).sum())
         return correct / len(indices)
 
-    def fit(self, epochs):
+    def fit(self, epochs, patience=30):
         best_val_acc = 0
         best_test_acc = 0
+        wait = 0
         for epoch in range(1, epochs + 1):
             loss = self.train_epoch()
             train_acc = self.test(self.train_idx)
             val_acc = self.test(self.val_idx)
             test_acc = self.test(self.test_idx)
-            
+
             if val_acc > best_val_acc:
                 best_val_acc = val_acc
                 best_test_acc = test_acc
-                
+                wait = 0
+            else:
+                wait += 1
+                if wait >= patience:
+                    print(f'Early stopping at epoch {epoch}')
+                    break
+
             print(f'Epoch: {epoch:02d}, Loss: {loss:.4f}, Train: {train_acc:.4f}, '
                   f'Val: {val_acc:.4f}, Test: {test_acc:.4f}')
         return best_test_acc
-
-

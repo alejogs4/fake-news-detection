@@ -170,7 +170,7 @@ class HGFND(nn.Module):
         if self.pooling == 'attention':
             gate_nn = nn.Linear(self.hidden_channels, 1)
             self.pool = AttentionalAggregation(gate_nn)
-        elif self.pooling not in ['max', 'mean', 'add']:
+        elif self.pooling not in ['max', 'mean', 'add', 'root']:
             raise ValueError(f"Unsupported pooling type: {self.pooling}")
         
         self.hypergraph_model = NewsHypergraph(self.hidden_channels, self.out_channels, self.dropout)
@@ -182,7 +182,9 @@ class HGFND(nn.Module):
         news = self.lin0(news).relu()
 
         p = self.conv1(x, edge_index).relu()
-        if self.pooling == 'max':
+        if self.pooling == 'root':
+            p = p[root]
+        elif self.pooling == 'max':
             p = global_max_pool(p, batch)
         elif self.pooling == 'mean':
             p = global_mean_pool(p, batch)
@@ -191,6 +193,7 @@ class HGFND(nn.Module):
         elif self.pooling == 'attention':
             p = self.pool(p, batch)
         p = self.lin1(torch.cat([news, p], dim=-1)).relu()
+        p = F.dropout(p, self.dropout, training=self.training)
 
         v = p.unsqueeze(0)
         
