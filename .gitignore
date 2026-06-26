@@ -6,4 +6,4 @@ __pycache__/
 *.npz
 IEEEBigdata22_HGFND/
 GNN-FakeNews/
-theoretical_results.csv
+results_explanation.csv
