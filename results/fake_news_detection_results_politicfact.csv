@@ -1,0 +1,28 @@
+Seed,Dataset,Feature,Use GNN,GNN Type,Use Text,Use CMCG,Use Sentiment,Epochs,Accuracy
+42,politifact,bert,False,GCN,True,False,False,30,0.6534782608695652
+42,politifact,bert,True,GCN,False,False,False,30,0.8826086956521739
+42,politifact,bert,True,SAGE,False,False,False,30,0.8913043478260869
+42,politifact,bert,True,GCN,True,False,False,30,0.8695652173913043
+42,politifact,bert,True,SAGE,True,False,False,30,0.8782608695652174
+42,politifact,bert,True,GCN,True,True,False,30,0.8608695652173913
+42,politifact,bert,True,SAGE,True,True,False,30,0.9043478260869565
+42,politifact,bert,False,GCN,True,False,True,30,0.6478260869565217
+42,politifact,bert,True,SAGE,True,False,True,30,0.8869565217391304
+42,politifact,bert,True,SAGE,True,True,True,30,0.9230434782608695
+2026,politifact,bert,False,GCN,True,False,False,30,0.6695652173913043
+2026,politifact,bert,True,GCN,False,False,False,30,0.8739130434782608
+2026,politifact,bert,True,SAGE,False,False,False,30,0.8782608695652174
+2026,politifact,bert,True,GCN,True,False,False,30,0.8652173913043478
+2026,politifact,bert,True,SAGE,True,False,False,30,0.8739130434782608
+2026,politifact,bert,True,GCN,True,True,False,30,0.8565217391304348
+2026,politifact,bert,True,SAGE,True,True,False,30,0.8913043478260869
+2026,politifact,bert,False,GCN,True,False,True,30,0.6391304347826087
+2026,politifact,bert,True,SAGE,True,False,True,30,0.8782608695652174
+2026,politifact,bert,True,SAGE,True,True,True,30,0.9086956521739130
+42,politifact,bert,Text-Only,SAGE,False,True,False,1,0.6130434782608696
+42,politifact,bert,GNN-Only (GCN),GCN,True,False,False,1,0.7608695652173913
+42,politifact,bert,GNN-Only (SAGE),SAGE,True,False,False,1,0.8347826086956522
+42,politifact,bert,GNN-Only (GAT),GAT,True,False,False,1,0.7391304347826087
+42,politifact,bert,GNN+Text (GCN),GCN,True,True,False,1,0.7217391304347826
+42,politifact,bert,GNN+Text (SAGE),SAGE,True,True,False,1,0.6956521739130435
+42,politifact,bert,GNN+Text (GAT),GAT,True,True,False,1,0.6652173913043478

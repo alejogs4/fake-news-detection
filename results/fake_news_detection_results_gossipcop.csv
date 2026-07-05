@@ -1,0 +1,28 @@
+Seed,Dataset,Feature,Use GNN,GNN Type,Use Text,Use CMCG,Use Sentiment,Epochs,Accuracy
+42,gossipcop,bert,False,GCN,True,False,False,30,0.7213800313643491
+42,gossipcop,bert,True,GCN,False,False,False,30,0.9628855201254574
+42,gossipcop,bert,True,SAGE,False,False,False,30,0.9641923680083638
+42,gossipcop,bert,True,GCN,True,False,False,30,0.9534762153685311
+42,gossipcop,bert,True,SAGE,True,False,False,30,0.9589649764767381
+42,gossipcop,bert,True,GCN,True,True,False,30,0.9398849973863043
+42,gossipcop,bert,True,SAGE,True,True,False,30,0.968897020386827
+42,gossipcop,bert,False,GCN,True,False,True,30,0.71745948771563
+42,gossipcop,bert,True,SAGE,True,False,True,30,0.9618400418191323
+42,gossipcop,bert,True,SAGE,True,True,True,30,0.9754107161526398
+2026,gossipcop,bert,False,GCN,True,False,False,30,0.7396759017250392
+2026,gossipcop,bert,True,GCN,False,False,False,30,0.9657605854678516
+2026,gossipcop,bert,True,SAGE,False,False,False,30,0.9560899111343439
+2026,gossipcop,bert,True,GCN,True,False,False,30,0.9597490852064819
+2026,gossipcop,bert,True,SAGE,True,False,False,30,0.9626241505488761
+2026,gossipcop,bert,True,GCN,True,True,False,30,0.9547830632514376
+2026,gossipcop,bert,True,SAGE,True,True,False,30,0.9589649764767381
+2026,gossipcop,bert,False,GCN,True,False,True,30,0.7054364871928908
+2026,gossipcop,bert,True,SAGE,True,False,True,30,0.9605331939362258
+2026,gossipcop,bert,True,SAGE,True,True,True,30,0.9657605854678516
+42,gossipcop,bert,Text-Only,SAGE,False,True,False,1,0.6915838996340826
+42,gossipcop,bert,GNN-Only (GCN),GCN,True,False,False,1,0.8355985363303712
+42,gossipcop,bert,GNN-Only (SAGE),SAGE,True,False,False,1,0.9189754312598014
+42,gossipcop,bert,GNN-Only (GAT),GAT,True,False,False,1,0.8173026659696812
+42,gossipcop,bert,GNN+Text (GCN),GCN,True,True,False,1,0.8031887088342917
+42,gossipcop,bert,GNN+Text (SAGE),SAGE,True,True,False,1,0.7760062728698379
+42,gossipcop,bert,GNN+Text (GAT),GAT,True,True,False,1,0.7420282279142708
